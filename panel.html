@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeowMeetings Control Panel</title>
+  <link rel="stylesheet" href="panel.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Active View: Meetings List -->
+    <div id="meetings-view" class="view active">
+      <header class="header">
+        <div class="logo-area">
+          <svg class="header-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 7L7.5 9.7C8.5 9.3 9.7 9 11 9C12.3 9 13.5 9.3 14.5 9.7L17 7L16.2 11.5C17.2 12.6 17.2 14.1 16.2 15.3C15.1 16.4 13.2 16.7 11 16.7C8.8 16.7 6.9 16.4 5.8 15.3C4.8 14.1 4.8 12.6 5.8 11.5L5 7Z" fill="#6366f1"/>
+            <path d="M3 12.5H5.5M16.5 12.5H19M3.5 14.5H6M16 14.5H18.5" stroke="#6366f1" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h1>MeowMeetings</h1>
+        </div>
+        <button id="btn-to-settings" class="icon-button" title="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+      </header>
+
+      <main class="meetings-content">
+        <div id="sync-bar" class="sync-bar">
+          <span class="status-indicator synced"></span>
+          <span id="sync-text">Checking...</span>
+          <button id="btn-force-sync" class="text-button" title="Sync Now">Sync</button>
+        </div>
+
+        <div id="events-list" class="events-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Sleeping Cat Placeholder (Shown when empty) -->
+        <div id="no-meetings" class="no-meetings hidden">
+          <div class="sleeping-cat-container">
+            <svg class="sleeping-cat" width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+              <g fill="#4338ca">
+                <!-- Sleeping Cat Body -->
+                <ellipse cx="60" cy="50" rx="35" ry="20" />
+                <!-- Tail curled around body -->
+                <path d="M85 60 C95 62, 100 50, 95 42 C92 38, 88 42, 90 46 C92 50, 88 54, 80 52" stroke="#4338ca" stroke-width="6" stroke-linecap="round" fill="none" />
+                <!-- Head -->
+                <circle cx="35" cy="40" r="15" />
+                <!-- Ears -->
+                <polygon points="23,30 20,15 33,27" />
+                <polygon points="37,27 48,15 45,30" />
+              </g>
+              <!-- Sleeping closed eyes -->
+              <path d="M28 42 Q31 45 33 42 M38 42 Q40 45 42 42" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" fill="none" />
+              <!-- Breath indicator Zzz -->
+              <g class="zzz-group" fill="#818cf8" font-family="'Outfit', sans-serif" font-weight="bold">
+                <text x="75" y="25" font-size="10" class="zzz zzz1">z</text>
+                <text x="83" y="18" font-size="14" class="zzz zzz2">Z</text>
+                <text x="94" y="10" font-size="18" class="zzz zzz3">Z</text>
+              </g>
+            </svg>
+          </div>
+          <p class="empty-title">All clear today!</p>
+          <p class="empty-subtitle">No upcoming meetings. Time to nap.</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Toggle View: Settings Drawer -->
+    <div id="settings-view" class="view">
+      <header class="header">
+        <button id="btn-back" class="icon-button" title="Back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <h1>Settings</h1>
+      </header>
+
+      <main class="settings-content">
+        <div class="settings-group">
+          <label for="ical-url">Google Calendar Private iCal URL</label>
+          <input type="password" id="ical-url" placeholder="https://calendar.google.com/.../basic.ics" autocomplete="off" />
+          <div class="help-link-container">
+            <span class="help-link" id="help-trigger">Where do I find this?</span>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-group half">
+            <label for="cat-breed">Cat Breed</label>
+            <select id="cat-breed">
+              <option value="tabby">Orange Tabby</option>
+              <option value="calico">Sweet Calico</option>
+              <option value="tuxedo">Tuxedo Cat</option>
+              <option value="siamese">Siamese Cat</option>
+              <option value="void">Midnight Void</option>
+            </select>
+          </div>
+
+          <div class="settings-group half">
+            <label for="cat-speed">Walking Speed</label>
+            <select id="cat-speed">
+              <option value="slow">Slow Walk</option>
+              <option value="normal">Leisurely</option>
+              <option value="fast">Brisk Pace</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-group half">
+            <label for="trigger-time">Alert Timing</label>
+            <select id="trigger-time">
+              <option value="600">10 Min Before</option>
+              <option value="300">5 Min Before</option>
+              <option value="120">2 Min Before</option>
+              <option value="60">1 Min Before</option>
+              <option value="30">30 Sec Before</option>
+              <option value="5">5 Sec Before</option>
+              <option value="0">At Start Time</option>
+            </select>
+          </div>
+
+          <div class="settings-group half">
+            <label for="sound-volume">Meow Volume</label>
+            <select id="sound-volume">
+              <option value="muted">Muted 🤫</option>
+              <option value="soft">Soft Purr 🐈</option>
+              <option value="normal">Normal Meow 🔊</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-actions">
+          <button id="btn-test-walk" class="secondary-button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Test Cat Walk
+          </button>
+          <button id="btn-save" class="primary-button">Save Changes</button>
+        </div>
+
+        <!-- Help Drawer Overlay -->
+        <div id="help-drawer" class="help-drawer hidden">
+          <div class="help-drawer-header">
+            <h3>iCal Sync Guide</h3>
+            <button id="help-close" class="close-btn">&times;</button>
+          </div>
+          <div class="help-drawer-content">
+            <ol>
+              <li>Open <strong>Google Calendar</strong> in your web browser.</li>
+              <li>Hover over your primary calendar in the left sidebar, click the <strong>three dots</strong>, and select <strong>Settings and sharing</strong>.</li>
+              <li>Scroll down to the bottom to the <strong>Integrate calendar</strong> section.</li>
+              <li>Copy the <strong>Secret address in iCal format</strong> link.</li>
+              <li>Paste it here! It works 100% locally and privately.</li>
+            </ol>
+            <div class="warning-box">
+              <strong>Warning:</strong> Keep this URL secret as it permits calendar viewing.
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="panel.js"></script>
+</body>
+</html>

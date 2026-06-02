@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeowMeetings Cat Alert</title>
+  <link rel="stylesheet" href="overlay.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Screen container -->
+  <div class="screen-canvas">
+    
+    <!-- Moving container containing the Cat, Dotted string, and Glassmorphic Banner -->
+    <div id="cat-walk-container" class="cat-walk-container breed-tabby speed-normal">
+      
+      <!-- 1. The Vector SVG Cat -->
+      <svg class="cat-svg" width="140" height="110" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Radial glow for bell -->
+          <radialGradient id="bell-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fef08a" />
+            <stop offset="100%" stop-color="#ca8a04" />
+          </radialGradient>
+        </defs>
+
+        <!-- Dynamic Breed Styling Classes applied at SVG level -->
+        <g class="cat-body-group">
+          <!-- Back Leg Left -->
+          <g class="cat-leg leg-bl">
+            <path class="fur" d="M 94 62 C 96 78, 93 88, 89 95 C 86 98, 91 100, 95 98 C 99 94, 101 80, 99 62 Z" />
+            <path class="paw" d="M 89 94 Q 93 92 95 98 Z" />
+          </g>
+
+          <!-- Front Leg Left -->
+          <g class="cat-leg leg-fl">
+            <path class="fur" d="M 46 58 C 44 72, 42 82, 38 90 C 35 93, 40 95, 44 93 C 48 88, 50 72, 49 58 Z" />
+            <path class="paw" d="M 38 89 Q 42 87 44 93 Z" />
+          </g>
+
+          <!-- Long tail (placed behind body) -->
+          <g class="cat-tail">
+            <path class="fur tail-path" d="M 108 50 C 120 44, 130 25, 122 15 C 117 8, 108 15, 114 22 C 118 28, 114 38, 106 45" stroke-linecap="round" fill="none" />
+          </g>
+
+          <!-- Main Torso Body -->
+          <g class="cat-torso">
+            <path class="fur" d="M 36 50 C 44 54, 88 52, 98 42 C 108 32, 118 44, 113 57 C 108 67, 50 70, 36 58 Z" />
+            
+            <!-- Breed Striping Patterns (Orange Tabby by default) -->
+            <path class="stripes" d="M 60 48 Q 58 55 60 62 M 72 47 Q 70 55 72 61 M 84 45 Q 82 52 84 57" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <!-- White chest badge (Tuxedo & Calico) -->
+            <path class="chest" d="M 36 52 C 40 56, 52 56, 56 50 C 50 48, 38 46, 36 52 Z" />
+          </g>
+
+          <!-- Back Leg Right -->
+          <g class="cat-leg leg-br">
+            <path class="fur" d="M 102 62 C 104 78, 101 88, 97 95 C 94 98, 99 100, 103 98 C 107 94, 109 80, 107 62 Z" />
+            <path class="paw" d="M 97 94 Q 101 92 103 98 Z" />
+          </g>
+
+          <!-- Front Leg Right -->
+          <g class="cat-leg leg-fr">
+            <path class="fur" d="M 54 58 C 52 72, 50 82, 46 90 C 43 93, 48 95, 52 93 C 56 88, 58 72, 57 58 Z" />
+            <path class="paw" d="M 46 89 Q 50 87 52 93 Z" />
+          </g>
+
+          <!-- Head (pivots slightly) -->
+          <g class="cat-head">
+            <!-- Ears -->
+            <polygon class="ear-outer" points="16,22 12,5 26,18" />
+            <polygon class="ear-inner" points="18,20 15,9 24,17" fill="#f43f5e" />
+            
+            <polygon class="ear-outer" points="30,18 41,5 38,22" />
+            <polygon class="ear-inner" points="32,17 38,9 36,20" fill="#f43f5e" />
+
+            <!-- Face Circle -->
+            <circle class="fur" cx="28" cy="34" r="16" />
+            
+            <!-- Eyes (Happy / Sleepy curves) -->
+            <path class="eyes" d="M 17 34 Q 21 37 23 34 M 31 34 Q 35 37 37 34" stroke-width="2" stroke-linecap="round" fill="none" />
+            <!-- Nose & Mouth -->
+            <path class="nose" d="M 27 38 L 29 38 L 28 39.5 Z" fill="#f43f5e" />
+            <path class="mouth" d="M 25 41 Q 27 42.5 28 41 Q 29 42.5 31 41" stroke-width="1.2" stroke-linecap="round" fill="none" stroke="#1f2937" />
+            
+            <!-- Whiskers -->
+            <path class="whiskers" d="M 12 37 H 4 M 12 40 L 5 42 M 42 37 H 50 M 42 40 L 49 42" stroke-width="1" stroke-linecap="round" />
+            
+            <!-- Cute Blush cheeks -->
+            <circle class="blush" cx="16" cy="38" r="2" fill="#f43f5e" opacity="0.4" />
+            <circle class="blush" cx="38" cy="38" r="2" fill="#f43f5e" opacity="0.4" />
+          </g>
+
+          <!-- Collar and glowing gold bell -->
+          <g class="cat-collar">
+            <path class="collar" d="M 22 47 Q 27 50 32 46" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round" fill="none" />
+            <circle class="bell" cx="27" cy="50" r="4.5" fill="url(#bell-glow)" stroke="#ca8a04" stroke-width="0.8" />
+          </g>
+        </g>
+      </svg>
+
+      <!-- 2. The dynamic dotted line string -->
+      <svg class="string-svg" width="60" height="110" viewBox="0 0 60 110" xmlns="http://www.w3.org/2000/svg">
+        <path class="string-line" d="M 0 50 C 20 40, 40 40, 60 50" stroke="#818cf8" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+      </svg>
+
+      <!-- 3. The premium Glassmorphic Banner -->
+      <div class="banner-card">
+        <div class="banner-glow-effect"></div>
+        <div class="banner-content">
+          <div class="banner-left">
+            <div class="banner-time-badge">
+              <span id="countdown-timer">in 5 min</span>
+            </div>
+            <div class="banner-text-details">
+              <h2 id="meeting-title">Design Review & Architecture Setup</h2>
+              <p id="meeting-organizer">Organized by Google Team</p>
+            </div>
+          </div>
+          <div class="banner-right">
+            <button id="btn-join" class="banner-button action-join" title="Join video call">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+              Join
+            </button>
+            <button id="btn-snooze" class="banner-button action-snooze" title="Snooze for 2 minutes">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Snooze
+            </button>
+            <button id="btn-dismiss" class="banner-button action-dismiss" title="Dismiss">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Audio tags for soft meows -->
+  <audio id="sound-meow" src="https://assets.mixkit.co/active_storage/sfx/953/953-200.wav" preload="auto"></audio>
+  <audio id="sound-purr" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-200.wav" preload="auto"></audio>
+  <script src="overlay.js"></script>
+</body>
+</html>

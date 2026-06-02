@@ -1,0 +1,54 @@
+{
+  "name": "meow-meetings",
+  "version": "1.0.0",
+  "description": "A fun, sleek macOS calendar reminder app with a centered walking cat overlay.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-builder --mac --config"
+  },
+  "keywords": [
+    "calendar",
+    "reminder",
+    "cat",
+    "overlay",
+    "macos"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.antigravity.meowmeetings",
+    "productName": "MeowMeetings",
+    "files": [
+      "main.js",
+      "calendar-sync.js",
+      "panel.html",
+      "panel.css",
+      "panel.js",
+      "overlay.html",
+      "overlay.css",
+      "overlay.js",
+      "assets/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["universal"]
+        }
+      ]
+    },
+    "dmg": {
+      "title": "MeowMeetings",
+      "contents": [
+        { "x": 130, "y": 220 },
+        { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
+      ]
+    }
+  }
+}

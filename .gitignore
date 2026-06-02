@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+out/
+release/
+*.dmg
+*.pkg
+*.zip
+
+# Electron builder cache
+.webpack/
+.vite/
+
+# OS clutter
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Secrets & local config — NEVER commit these
+settings.json
+config.json
+*.ics
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+
+# Claude memory (local assistant state)
+.claude/
