@@ -12,7 +12,7 @@ No OAuth. No permissions dialog. No Electron splash screen. Just a cat.
 
 <br>
 
-![MeowMeetings — app icon](.github/preview.png)
+![MeowMeetings — app icon](.github/image.png)
 
 ---
 
