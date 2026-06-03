@@ -12,7 +12,7 @@ No OAuth. No permissions dialog. No Electron splash screen. Just a cat.
 
 <br>
 
-![MeowMeetings — animated cat walks across the screen pulling a glassmorphic meeting reminder banner](.github/preview.png)
+![MeowMeetings — app icon](.github/preview.png)
 
 ---
 
@@ -96,6 +96,18 @@ All settings live in the app's Settings panel:
 | Meow volume | Muted / Soft / Normal |
 
 Hit **Test Cat Walk** to preview without waiting for a real meeting.
+
+---
+
+## Contributing
+
+Contributions are welcome! Whether you're fixing bugs, adding features, or improving documentation:
+
+- **Found a bug?** [Open an issue](https://github.com/QasimTalkin/MeowMeetings/issues) with details about what happened
+- **Have an idea?** [Create an issue](https://github.com/QasimTalkin/MeowMeetings/issues) to discuss it first
+- **Ready to code?** Fork the repo, create a feature branch, and [submit a pull request](https://github.com/QasimTalkin/MeowMeetings/pulls)
+
+All skill levels welcome — no PR is too small.
 
 ---
 
