@@ -4,16 +4,43 @@
 
 No OAuth. No permissions dialog. No Electron splash screen. Just a cat.
 
-![A glassmorphic banner being dragged across the screen by an animated SVG cat](.github/preview.png)
+<div align="center">
+  <a href="https://github.com/QasimTalkin/MeowMeetings/releases/latest/download/MeowMeetings-universal.dmg">
+    <img src="https://img.shields.io/badge/⬇ Download_for_macOS-Apple_Silicon_%2B_Intel-black?style=for-the-badge&logo=apple" alt="Download for macOS">
+  </a>
+</div>
+
+<br>
+
+![MeowMeetings — animated cat walks across the screen pulling a glassmorphic meeting reminder banner](.github/preview.png)
+
+---
+
+## Install in 10 seconds
+
+1. [**Download MeowMeetings-universal.dmg**](https://github.com/QasimTalkin/MeowMeetings/releases/latest/download/MeowMeetings-universal.dmg)
+2. Open the DMG → drag **MeowMeetings** to **Applications**
+3. Launch the app → click the menu bar icon → **Settings** → paste your Google Calendar iCal URL → **Save**
+
+> Works on Apple Silicon and Intel Macs (universal binary).
+
+### Get your iCal URL
+
+1. Open **Google Calendar** in a browser
+2. Hover your calendar in the left sidebar → three dots → **Settings and sharing**
+3. Scroll to **Integrate calendar** → copy **Secret address in iCal format**
+4. Paste it into MeowMeetings Settings
+
+> Keep the iCal URL private — it grants read access to your calendar without a password.
 
 ---
 
 ## What it does
 
-MeowMeetings sits silently in your menu bar and syncs with Google Calendar via a private iCal feed. When a meeting is coming up, an animated vector cat walks from right to left across the **center of your screen**, pulling a glassmorphic banner showing the meeting title, a live countdown, and action buttons.
+MeowMeetings sits silently in your menu bar and polls your calendar. When a meeting is approaching, an animated vector cat walks across the **center of your screen**, pulling a glassmorphic banner showing the meeting title, a live countdown, and action buttons.
 
 - **Join** — opens the video call link and the cat sprints off-screen
-- **Snooze** — cat panics and runs, reminder comes back in 2 minutes
+- **Snooze** — cat panics and runs; reminder returns in 2 minutes
 - **Dismiss** — cat walks away gracefully
 - **Click the cat** — it meows at you
 
@@ -25,8 +52,8 @@ MeowMeetings sits silently in your menu bar and syncs with Google Calendar via a
 - Glassmorphic notification banner with live countdown (ticks every second)
 - Click-through overlay — only the cat and banner are interactive
 - 5 cat breeds: Orange Tabby, Calico, Tuxedo, Siamese, Midnight Void
-- 100% local & private — no cloud, no accounts, just a secret iCal URL
-- 10-second setup
+- 100% local & private — no cloud, no accounts
+- Apple Silicon + Intel universal binary
 
 ---
 
@@ -43,31 +70,23 @@ MeowMeetings sits silently in your menu bar and syncs with Google Calendar via a
 
 ---
 
-## Setup
+## Build from source
 
 **Prerequisites:** Node.js 18+ and npm.
 
 ```bash
-git clone https://github.com/your-username/meow-meetings.git
-cd meow-meetings
+git clone https://github.com/QasimTalkin/MeowMeetings.git
+cd MeowMeetings
 npm install
-npm start
+npm start          # run in dev
+npm run package    # build MeowMeetings-universal.dmg → dist/
 ```
-
-### Connect your calendar
-
-1. Open **Google Calendar** in a browser
-2. Hover over your calendar in the left sidebar → three dots → **Settings and sharing**
-3. Scroll to **Integrate calendar** → copy **Secret address in iCal format**
-4. Click the MeowMeetings menu bar icon → Settings → paste the URL → Save
-
-> Keep the iCal URL private — it grants read access to your calendar without a password.
 
 ---
 
 ## Configuration
 
-All settings are in the app's Settings panel:
+All settings live in the app's Settings panel:
 
 | Setting | Options |
 |---|---|
@@ -77,16 +96,6 @@ All settings are in the app's Settings panel:
 | Meow volume | Muted / Soft / Normal |
 
 Hit **Test Cat Walk** to preview without waiting for a real meeting.
-
----
-
-## Building a distributable
-
-```bash
-npm run package
-```
-
-Outputs a universal macOS `.dmg` in `dist/`.
 
 ---
 
